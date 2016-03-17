@@ -10,7 +10,8 @@ usr = parsed['credentials']['username']
 pwd = parsed['credentials']['password']
 
 url_alt = ["https://gateway.watsonplatform.net/concept-insights/api/v2/accounts", 
-	"https://gateway.watsonplatform.net/concept-insights/api/v2/graphs"]
+	"https://gateway.watsonplatform.net/concept-insights/api/v2/graphs", 
+	"https://gateway.watsonplatform.net/concept-insights/api/v2/corpora"]
 
 
 # get account
@@ -27,3 +28,10 @@ for i in data_g:
 	graph.append(i)
 print graph
 
+# get copora
+r_c = requests.get(url_alt[2], auth=(usr, pwd))
+data_c = json.loads(r_c.text)['corpora']
+corpora = []
+for i in data_c:
+	corpora.append(i)
+print corpora
