@@ -1,16 +1,15 @@
+# Testing Natural Langauge Processor API
+# Version: 1.0
+# Author:  Myron Leung
+
 import json
 import requests
+from get_cred import get_cred
 from watson_developer_cloud import NaturalLanguageClassifierV1 as nlc
 
-cred = open('credentials_NLC.json', 'r')
-parsed = json.loads(cred.read())
-cred.close()
-
-url = parsed['credentials']['url']
-usr = parsed['credentials']['username']
-pwd = parsed['credentials']['password']
+cred = get_cred('NLC')
 
 natural_language_classifier = nlc(
-  username=usr,
-  password=pwd)
+  username=cred['usr'],
+  password=cred['pwd'])
 
