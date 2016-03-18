@@ -6,11 +6,11 @@ TeamNDL's repository for the Watson Developer Challenge
 
 ##H2 Inputing Credentials
 1. Create Directory 'credentials':
-'''
+```
 touch credentials
-'''
+```
 2. Create credential file:
-'''json
+```json
 {
   "NLC": {
   	"url": "{your_url}",
@@ -23,5 +23,5 @@ touch credentials
     "username": "{your_usr}"
   }
 }
-'''
+```
 3. Add credential file to .gitignore
