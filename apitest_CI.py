@@ -13,6 +13,7 @@ url_alt = {'acc':"https://gateway.watsonplatform.net/concept-insights/api/v2/acc
 	'crp': "https://gateway.watsonplatform.net/concept-insights/api/v2/corpora"}
 
 cred = get_cred('CI')
+print cred
 account = 0
 # get account
 def getAccountInfo():
@@ -30,32 +31,44 @@ def getAvailableGraphs():
 	graph = []
 	for i in data_g:
 		graph.append(i)
-	print graph
+	pprint.pprint(graph)
 
 # get available copora for account
 def getAvailableCorpora():
 	url_account = url_alt['crp']+'/'+str(account)
 	r_c = requests.get(url_account, auth=(cred['usr'], cred['pwd']))
 	data_c = json.loads(r_c.text)['corpora']
-	print data_c
+	pprint.pprint(data_c)
 
 #insert new document into corpus
-def createNewCorpus(data, name):
-	url = str(url_alt['crp']) + '/' + str(account) +'/'+ str(name)
+def createNewCorpus(data, corp_name):
+	global account
+	print 'account: ', account
+	url = str(url_alt['crp']) + '/' + str(account) +'/'+ str(corp_name)
+	print 'corpus url:', url
 	r = requests.put(url, data = data, auth=(cred['usr'], cred['pwd']))
 	print r.status_code
-	pprint.pprint(json.loads(r.text))
+	# pprint.pprint(json.loads(r.text))
 
-print 'account: ', getAccountInfo()
-print 'graphs: ', getAvailableGraphs()
-print 'creating new corpus...'
-raw_file = open('corpora_setup.json', 'r')
-data = json.loads(raw_file.read())
-raw_file.close()
+# test code. remove before finishing
+def testCorpus():
+	print 'creating new corpus...'
+	data = open('corpus_object.json', 'r')
+	# data = json.loads(raw_file.read())
+	createNewCorpus(data, 'test')
+	# raw_file.close()
+	# pprint.pprint(data)
+	print 'exiting...'
 
-pprint.pprint(data)
+print 'account:'
+getAccountInfo()
+print 'graphs:'
+getAvailableGraphs()
 
-createNewCorpus(data, 'test_corpus_name')
-print 'exiting...'
+testCorpus()
+
+print 'corpus:'
+getAvailableCorpora()
+
 
 

@@ -1,0 +1,10 @@
+{
+  "access": "private",
+  "users": [
+    {
+      "account_id": "545987f9-22c3-4438-9613-a59400956f54",
+      "permission": "Read"
+    }
+  ],
+  "ttl_hours": 271
+}
