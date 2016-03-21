@@ -15,14 +15,13 @@ url_alt = {'acc':"https://gateway.watsonplatform.net/concept-insights/api/v2/acc
 cred = get_cred('CI')
 print cred
 account = 0
-# get account
+
 def getAccountInfo():
 	global account
 	r_a = requests.get(url_alt['acc'], auth=(cred['usr'], cred['pwd']))
 	data_a = json.loads(r_a.text)
 	account = data_a['accounts'][0]['account_id']
 	print account
-
 
 # get graphs
 def getAvailableGraphs():
@@ -41,34 +40,61 @@ def getAvailableCorpora():
 	pprint.pprint(data_c)
 
 #insert new document into corpus
-def createNewCorpus(data, corp_name):
-	global account
-	print 'account: ', account
+def createNewCorpus(corpus_object, corp_name):
+	print 'Creating new corpus: ' + str(corp_name)
+	corp_ob = open(corpus_object, 'r')
 	url = str(url_alt['crp']) + '/' + str(account) +'/'+ str(corp_name)
 	print 'corpus url:', url
-	r = requests.put(url, data = data, auth=(cred['usr'], cred['pwd']))
+	r = requests.put(url, data = corp_ob, auth=(cred['usr'], cred['pwd']))
 	print r.status_code
+	corp_ob.close()
+	pprint.pprint(r.text)
 	# pprint.pprint(json.loads(r.text))
 
-# test code. remove before finishing
-def testCorpus():
-	print 'creating new corpus...'
-	data = open('corpus_object.json', 'r')
-	# data = json.loads(raw_file.read())
-	createNewCorpus(data, 'test')
-	# raw_file.close()
-	# pprint.pprint(data)
-	print 'exiting...'
+def delCorpus(corp_name):
+	print "Deleting Corpus " + str(corp_name)
+	url = url_alt['crp'] + '/' + str(account) + '/' + str(corp_name)
+	print url
+	r = requests.delete(url, auth=(cred['usr'], cred['pwd']), data = str(corp_name))
+	print r.status_code
+	pprint.pprint(r.text)
+
+def inputDocumentToCorpus(document_object, filename, corp_name):
+	# get document obejct requirements and load into temporary variables
+	doc_ob = open(document_object, 'r')
+	data = open(filename, 'r')
+	parsed_doc_ob = json.loads(doc_ob.read())
+	doc_ob.close()
+
+	# insert data into document object
+	parsed_doc_ob['parts'][0]['data'] = data.read()
+	data.close()
+	
+	# dump processed document object to json
+	output_doc_ob = json.dumps(parsed_doc_ob)
+
+	# send outpt docuemnt object to watson
+	url = url_alt['crp'] +'/'+ str(account) +'/'+  str(corp_name)  +'/documents/'+ str(parsed_doc_ob['id'])
+	print url
+	r = requests.put(url, data = output_doc_ob, auth=(cred['usr'], cred['pwd']))
+	print r.status_code
+	pprint.pprint(r.text)
 
 print 'account:'
 getAccountInfo()
 print 'graphs:'
 getAvailableGraphs()
 
-testCorpus()
+# createNewCorpus('corpus_object.json', 'test4')
+# inputDocumentToCorpus('document_object.json', 'Journals/goodnight0', 'test1')
 
-print 'corpus:'
-getAvailableCorpora()
+# print 'corpus:'
+# getAvailableCorpora()
 
+
+corp_url = url_alt['crp'] + '/' + account + '/' + 'test1'+ '/documents/'
+r = requests.get(corp_url, auth=(cred['usr'], cred['pwd']))
+print "data from test1"
+pprint.pprint(r.text)
 
 

@@ -1,0 +1,13 @@
+{
+  "id": "test1",
+  "label": "Test Document 1",
+  "parts": [
+    {
+      "name": "string",
+      "content-type": "text/plain",
+      "data": "string"
+    }
+  ],
+  "last_modified": "2016-03-21T17:18:30.799Z",
+  "ttl_hours": 271
+}
