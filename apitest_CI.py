@@ -85,6 +85,10 @@ class ConceptInsights:
 		doc_ob = open(document_object, 'r')
 		data = open(filename, 'r')
 		parsed_doc_ob = json.loads(doc_ob.read())
+
+		print "parsed_doc_ob"
+		pprint.pprint(parsed_doc_ob)
+
 		doc_ob.close()
 
 		# insert data into document object
@@ -137,7 +141,7 @@ class ConceptInsights:
 		r = requests.get(url, data = concepts, auth=(cred['usr'], cred['pwd']), headers = headers)
 		print r.status_code
 
-	def getAllDocument(self, corp_name, index):
+	def getAllDocuments(self, corp_name):
 		cred = self.cred
 		account = self.account
 		url_alt = self.url_alt
@@ -162,11 +166,12 @@ class ConceptInsights:
 		return document
 
 	def getDocAnnotations(self, corp_name):
+		print 'getting doc annotations...'
 		cred = self.cred
 		url_alt = self.url_alt
 		account = self.account
-		getDocument(corp_name, 0)
-		url = url_alt['crp'] + '/' + account + '/' + str(corp_name)  + '/documents/' +  + '/annotations'
+		url = url_alt['crp'] + '/' + account + '/' + str(corp_name)  + '/documents/' + 'test1' + '/annotations'
+
 
 
 
@@ -176,16 +181,18 @@ if __name__ == "__main__":
 	ci.getAccountInfo()
 	print 'graphs:'
 	ci.getAvailableGraphs()
-
-	# ci.createNewCorpus('corpus_object.json', 'test1')
-	# ci.inputDocumentToCorpus('document_object.json', 'Journals/goodnight0', 'doc1')
-
 	print 'corpora:'
 	ci.getAvailableCorpora()
 
+	# ci.createNewCorpus('corpus_object.json', 'test1')
+	ci.inputDocumentToCorpus('document_object.json', 'Journals/goodnight0', 'test1')
+
 	# getConcepts('Journals/goodnight0')
-	ci.getDocument('test1', 'test1')
-	# getDocAnnotations('test1')
+	ci.getAllDocuments('test1')
+
+	ci.getDocument('test1', 'doc1')
+
+	ci.getDocAnnotations('doc1')
 
 
 
