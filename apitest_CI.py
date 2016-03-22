@@ -15,6 +15,7 @@ url_alt = {'acc':"https://gateway.watsonplatform.net/concept-insights/api/v2/acc
 cred = get_cred('CI')
 print cred
 account = 0
+graph = []
 
 def getAccountInfo():
 	global account
@@ -25,9 +26,9 @@ def getAccountInfo():
 
 # get graphs
 def getAvailableGraphs():
+	global graph
 	r_g = requests.get(url_alt['gph'], auth=(cred['usr'], cred['pwd']))
 	data_g = json.loads(r_g.text)['graphs']
-	graph = []
 	for i in data_g:
 		graph.append(i)
 	pprint.pprint(graph)
@@ -80,21 +81,40 @@ def inputDocumentToCorpus(document_object, filename, corp_name):
 	print r.status_code
 	pprint.pprint(r.text)
 
+def getConcepts(raw_doc):
+	global graph
+	print "Getting concepts for", str(raw_doc) + "..."
+	print 'using', graph[1]
+	doc = open(raw_doc,'r')
+	parsed = doc.read()
+	doc.close()
+	url = url_alt['gph'] + "/wikipedia/en-latest/annotate_text"
+	headers = {'content-type': 'text/plain'}
+	print url
+	r = requests.post(url, data = str(parsed), auth=(cred['usr'], cred['pwd']), headers = headers)
+	print r.status_code
+	print r.text
+
+
 print 'account:'
 getAccountInfo()
 print 'graphs:'
 getAvailableGraphs()
 
+# test: create new corpus
 # createNewCorpus('corpus_object.json', 'test4')
 # inputDocumentToCorpus('document_object.json', 'Journals/goodnight0', 'test1')
 
-# print 'corpus:'
-# getAvailableCorpora()
+print 'corpora:'
+getAvailableCorpora()
 
+# test: get document from corporat
+# corp_url = url_alt['crp'] + '/' + account + '/' + 'test1'+ '/documents/'
+# r = requests.get(corp_url, auth=(cred['usr'], cred['pwd']))
+# print "data from test1"
+# pprint.pprint(r.text)
 
-corp_url = url_alt['crp'] + '/' + account + '/' + 'test1'+ '/documents/'
-r = requests.get(corp_url, auth=(cred['usr'], cred['pwd']))
-print "data from test1"
-pprint.pprint(r.text)
+getConcepts('Journals/goodnight0')
+
 
 
