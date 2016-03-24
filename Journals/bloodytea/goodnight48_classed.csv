@@ -1,0 +1,35 @@
+Sentence,Class,Confidence
+"What is wrong with me that I keep putting my self through this?
+",Relationship,0.5781599020520465
+"I keep telling my self I am leaving and not going back.
+",Relationship,0.45968631456914066
+"I always go back.
+",Relationship,0.36240165573110583
+"Yet again I have another bruise.
+",N/A,0.864255263443216
+"This time was even more scary.
+",Reflection,0.33630646113291623
+"I couldn’t even stand to look at him whit his hands around my neck.
+",Relationship,0.322635945541251
+"What if he didn’t let go when he did?
+",N/A,0.4768534359610314
+"Does he have it in me to kill me?
+",Relationship,0.9400458202302743
+"At one time I would have thought of course not, Now I am not so sure anymore.
+",Relationship,0.7755208884429511
+"I just feel so stupid I cry and I cry and scream begging him to stop.
+",Productivity,0.3326314147064142
+"I just want it all to stop.
+",Productivity,0.5109422342549663
+"I feel so stupid.
+",N/A,0.27979606864400525
+"What the hell is wrong with me?
+",Relationship,0.9456438485884726
+"I am a smart woman.
+",Self-consciousness,0.5440804912684555
+"I know the abuse will not stop.
+",Self-consciousness,0.19842396705696738
+"It will only get worse.
+",N/A,0.9425909783464483
+"How much worse can it get before I am back in the ER with a broken bone lying to a doctor about falling down the steps or even worse dead.
+",Relationship,0.7250304070209198

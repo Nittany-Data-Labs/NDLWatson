@@ -6,8 +6,8 @@ from get_cred import get_cred
 from watson_developer_cloud import AlchemyLanguageV1
 
 url = 'http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment'
-
 length = 0
+
 def getPayload(filename):
     global length
     output = []
@@ -29,22 +29,22 @@ parsed = json.loads(cred.read())
 cred.close()
 cred = {'url': parsed['AL']['url'],'apikey': parsed['AL']['apikey']}
 
-payload = getPayload('Journals/Sentences/test_file.csv')
+def getEmotions(filename):
+    payload = getPayload(filename)
+    print "running request..."
+    c = 0
+    with open(str(str(filename)+'_sentiment.csv'), 'r+') as csvfile:
+        fieldnames = ['Sentence', 'Class', 'Confidence', 'Sentiment', 'Score']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        for row in range(1, length):
+            try:
+                print c+1
+                alchemy_language = AlchemyLanguageV1(api_key=cred['apikey'])
+                output = json.dumps(alchemy_language.sentiment(text=payload[c]))
+                writer.writerow({'Sentence': payload[c], 'Score': json.loads(output)['docSentiment']['score'], 'Type': json.loads(output)['docSentiment']['type']})
+            except:
+                print "coding error"
+            c += 1
 
-print "running request..."
-
-c = 0
-
-with open(str('Journals/Sentences/test_file_sentiment.csv'), 'w') as csvfile:
-    fieldnames = ['Sentence', 'Score', 'Type']
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    writer.writeheader()
-    for row in range(1, length):
-        try:
-            print c+1
-            alchemy_language = AlchemyLanguageV1(api_key=cred['apikey'])
-            output = json.dumps(alchemy_language.sentiment(text=payload[c]))
-            writer.writerow({'Sentence': payload[c], 'Score': json.loads(output)['docSentiment']['score'], 'Type': json.loads(output)['docSentiment']['type']})
-        except:
-            print "coding error"
-        c += 1
+getEmotions('Journals/BloodyTea/goodnight50')

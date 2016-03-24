@@ -1,0 +1,7 @@
+Sentence,Class,Confidence,Sentiment,Score
+"He is autistic and he had a meltdown about it.
+",Gossip,0.2943927793119196,negative,-0.708864
+"But today he got the jacket back, so I am praising the good Lord, because that Spiderman jacket is really important to my grandson.
+",Relationship,0.612658591577919,positive,0.831796
+"God is so good.
+",Religion,0.3238802766872121,positive,0.662527

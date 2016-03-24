@@ -1,0 +1,21 @@
+Sentence,Class,Confidence,Sentiment,Score
+"     I often hear people saying they have no filter and will say whatever they want because there not fake.
+",Socialize,0.7595876745043079,negative,-0.379252
+"Its not being “fake” its called being a mature adult with morals and values... Not sure how you people were raised but where I come from if you don’t have anything nice to say then don’t say anything at all.
+",Socialize,0.6370507079988779,positive,0.527431
+"Sure if you need to stand up for your self to a bully or something that you believe in that’s one thing.
+",Reflection,0.6278631655464694,negative,-0.335507
+"However if you are just going around being rude and hurting feelings then try and keep that to your self.
+",Reflection,0.3243164890718371,negative,-0.70435
+"Sometimes I make a mistake and say something rude and not even notice and if it is pointed out to me I will apologize no problem.
+",Relationship,0.8685389744219156,negative,-0.719655
+"Accidents happen but there is no good reason to be hurtful and mean on purpose.
+",Warning,0.4514440262589298,negative,-0.902904
+"And further more even if you were not raised to use curtesy and respect as a grown adult you should be able to use basic human sense and figure it out.
+",N/A,0.39134551883539015,positive,0.68634
+"For example there is a difference between saying privately to some one “Hey I just thought you should know your makeup is not blended very well and it is obvious.” and then there is this out loud in front of others, ” your face doesn’t match your neck!”  see what I mean you can say the same thing nicely or you could be very hurtful.
+",Trouble,0.6102487119355048,negative,-0.414762
+"and that’s my rant for the day, lol off my soap box now.
+",Family,0.7030106108970238,positive,0.202664
+"By the way this entry is not about anyone in particular its just something I hear a lot that really annoys me.
+",Relationship,0.5657240232960671,negative,-0.825449
