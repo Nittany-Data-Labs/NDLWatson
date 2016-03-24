@@ -32,7 +32,10 @@ def checkClassifierStatus(classifier_id):
     status = natural_language_classifier.status(classifier_id)
     print (json.dumps(status, indent=2))
 
-
+def classifySentence(sentence, classifier_id):
+    classes = natural_language_classifier.classify(classifier_id, sentence)
+    print(json.dumps(classes, indent=2))
 # createClassifier('Journals/Sentences/test_file_5.csv')
 classifier_id = listClassifier(0)
 checkClassifierStatus(classifier_id)
+classifySentence('I\'m really glad she\'s came out for skating and becoming part of the skating family Well', classifier_id)
