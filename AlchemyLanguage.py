@@ -34,15 +34,6 @@ payload = getPayload('Journals/Sentences/test_file.csv')
 print "running request..."
 
 c = 0
-# for i in payload:
-#     c += 1
-#     print str(c) + ": "
-#     try:
-#         alchemy_language = AlchemyLanguageV1(api_key=cred['apikey'])
-#         output = json.dumps(alchemy_language.sentiment(text=i))
-#         pprint.pprint(json.loads(output))
-#     except:
-#         print "coding error"
 
 with open(str('Journals/Sentences/test_file_sentiment.csv'), 'w') as csvfile:
     fieldnames = ['Sentence', 'Score', 'Type']

@@ -1,14 +1,24 @@
 import json
+from get_cred import get_cred
 from watson_developer_cloud import NaturalLanguageClassifierV1
 
-natural_language_classifier = NaturalLanguageClassifierV1(
-  username='c3d9a7ab-e9bc-4b15-b02f-0de513be0047',
-  password='7snmYSBWCeEp')
+cred = get_cred('NLC')
 
-with open('/Users/sahilmishra/Desktop/NDLWatson/Journals/Sentences/test_file.csv', 'rb') as training_data:
-  classifier = natural_language_classifier.create(
-    training_data=training_data,
-    name='MyNDLClassfier',
-    language='en'
-  )
-print(json.dumps(classifier, indent=2))
+natural_language_classifier = NaturalLanguageClassifierV1(
+  username=cred['usr'],
+  password=cred['pwd'])
+
+def createClassifier():
+    with open('Journals/Sentences/test_file_3.csv', 'rb') as training_data:
+        classifier = natural_language_classifier.create(
+            training_data=training_data,
+            name='NDL_Classfier',
+            language='en'
+        )
+    print(json.dumps(classifier, indent=2))
+def listClassifier():
+    classifiers = natural_language_classifier.list()
+    print(json.dumps(classifiers, indent=2))
+
+createClassifier()
+listClassifier()
