@@ -9,7 +9,7 @@ natural_language_classifier = NaturalLanguageClassifierV1(
   password=cred['pwd'])
 
 def createClassifier():
-    with open('Journals/Sentences/test_file_3.csv', 'rb') as training_data:
+    with open('Journals/Sentences/test_file_5.csv', 'rb') as training_data:
         classifier = natural_language_classifier.create(
             training_data=training_data,
             name='NDL_Classfier',
