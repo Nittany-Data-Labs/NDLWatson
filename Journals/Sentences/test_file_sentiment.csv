@@ -1,64 +1,19 @@
-Sentence,Score,Type
-To this day I cringe when I hear electric clippers buzzing maniacally.,-0.788848,negative
-Thank you!,0.841962,positive
-I think this sums up most of the significant ones.,0.812753,positive
-My options here are limited.,-0.383608,negative
-Ladies Day with grandma included a trip to the hair dresser (which in this household is an extremely rare indulgence).,0.704212,positive
-I hope things go better with my grandson today.,0.542204,positive
-I love my mom SO much now,0.311696,positive
-Took over an hour to make it n I kind of failed it cause I put too much water realized again making a good food takes lots of efforts n time.,-0.598123,negative
-Although we are so full,0.329805,positive
-I want to cut off all my hair and start wearing sweat pants to Walmart.,-0.685884,negative
-typical.things I wanted to do,-0.711411,negative
-Not to mention she likes an assortment of seemingly strange Japanese anime movies.,0.493858,positive
-I try not to lie,-0.48007,negative
-It might not seem like it at first glance,-0.25184,negative
-I snuck it with the lyrics.,-0.430946,negative
-Help us to see you.,0.749465,positive
-One day,0.217641,positive
-If you would like a copy,0.328554,positive
-I did what I always did... sort off.,-0.337269,negative
-I am going to think of the last few days as just a simple break from my life style and get back on it today.,-0.460046,negative
-I would say I got about 10% done now maybe less but just can‰Ûªt wait to show it to everybody.,0.351263,positive
-long day at work.,-0.287545,negative
-feel like I‰Ûªm getting lazy and lazy.,-0.827653,negative
-It gets me little depressed to just get old without achieving goals that I had planned to achieve on this time frame in my life.,-0.570773,negative
-Lots of lots of things to do.,0.426329,positive
-Well mostly being lazy... Just making sure I stay home in case he needs help.,-0.690538,negative
-Completely unaware it was a thought that had occurred to me beforehand,-0.638845,negative
-O don‰Ûªt rush and open your mind more widely.,0.248861,positive
-though I can explain the feeling.,-0.582495,negative
-you say trying doesn‰Ûªt count so I allow my self to think he is right I need to do a better job.,0.619797,positive
-Life was great,0.508789,positive
-Dare to hope.,0.228412,positive
-He is so important to me.,0.524191,positive
-Honestly what‰Ûªs the point of even thinking about you and me?,0.647696,positive
-I want you to know that I loved you dearly.,0.627653,positive
-I have this final time to spend with her.,-0.234918,negative
-I am so proud of her.,0.805585,positive
-I am so delighted because I have experienced such a closeness to Him from doing just that.,0.887463,positive
-I‰Ûªd miss getting the chance to make things right with the man.,-0.664786,negative
-We will walk together in Your garden,0.636946,positive
-I‰Ûªm there to help whenever I can and what she needs.,0.377824,positive
-Memories you forgot you had appear in personal detailed form... Also you can look back in pure embarrassment of the things you‰Ûªve done,-0.43127,negative
-and God bless you.,0.427239,positive
-I never found comfort in my religion.,-0.471826,negative
-I obsess over my hair.,-0.749884,negative
-I have a cute voice,0.792563,positive
-It‰Ûªs going to be a very early night tonight.,0.46933,positive
-Had a big burrito from Chipotle for dinner with her.,0.263076,positive
-I don‰Ûªt always know when its my turn to start or stop talking.,-0.457812,negative
-Have a goodnight everyone!,0.889735,positive
-I love to learn about people,0.742427,positive
-Goodnight everyone,0.824852,positive
-I dont really have any plans,-0.816354,negative
-Happy Friday and have a great weekend everyone!,0.932865,positive
-I‰Ûªm not a very outwardly affectionate person and sometimes I forget how important physical human contact can be to others.,0.228045,positive
-I hope one of two out 3 that I applied will call me soon because I just need money.,-0.290031,negative
-Use latest smart phone has 8 mega pixel camera or something like that?,0.775213,positive
-I imagine there‰Ûªs a large amount of cars that have tires with seriously bad tread ‰ÛÒ no wonder why they freak out about driving in snow or ice ‰ÛÒ their cars aren‰Ûªt safe to begin with.,-0.503572,negative
-People seem to get safety and freedom mixed up.,-0.346859,negative
-I got out to shovel the snow n noticed my neighbor shoveled snow toward to front of my car.,-0.809783,negative
-Conned I tell you I was conned!!,-0.562524,negative
-Note: So this particular entry is inevitably going to be quite long.,-0.704942,negative
-It‰Ûªs got cold again and raining/cloudy all day.,-0.578449,negative
+Sentence,Class
+Food,0.74956266215636
+N/A,0.9364583098648196
+Family,0.2817956973056329
+Trouble,0.47419395254542424
+Event,0.4789519214204071
+Productivity,0.6330906659757041
+Socialize,0.8147866656146053
+Productivity,0.7257883056536077
+Productivity,0.3155474582071739
+Sleep,0.37667770106501125
+N/A,0.43387347445625624
+Productivity,0.37736655287981286
+Productivity,0.6589792029621487
+Productivity,0.5698861235326959
+Productivity,0.6634901055580071
+Appreciation,0.8012470266316186
+Productivity,0.7096923081523417
+Relationship,0.39576730933336474
