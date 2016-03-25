@@ -76,4 +76,8 @@ classifier_id = listClassifier(0)
 # checkClassifierStatus(classifier_id)
 # pprint.pprint(classifySentence('Kind of feel little uncomfortable here.', classifier_id))
 
-classifyJournal('Journals/goodnight365', classifier_id)
+classifyJournal('Journals/goodnight285', classifier_id)
+
+# Travel
+# Addiction
+# sickness
