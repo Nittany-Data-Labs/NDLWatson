@@ -1,0 +1,21 @@
+Sentence,Class,Confidence,Sentiment,Score
+"Well that makes me feel really lazy.
+",Relationship,0.5748987075047883,negative,-0.855857
+"I don’t know that I have been being lazy or not.
+",Self-consciousness,0.6528005707289428,negative,-0.443041
+"It feels like I have a lot going on lately.
+",N/A,0.3226949572176662,negative,-0.223311
+"New website project that I have been working on and lots of thoughts in my head kind of drive me crazy.
+",Productivity,0.4912794701999382,negative,-0.294344
+"However, still it just doesn’t make sense for me to skip writing diary for this long.
+",N/A,0.43993555695762104,negative,-0.617482
+"Now that I’m writing things down, I kind of realize how I spent my free time lately and it was very unproductive.
+",Productivity,0.9241782543650964,negative,-0.503145
+"At some point, my goal has become blurry and I kind of forgetting where my destination is in my life.
+",Relationship,0.26312404983956555,negative,-0.616559
+"It seems like I just kept thinking about same daily routine of my life and get bored on that instead of preparing and building things for my future.
+",Productivity,0.9550856808362274,negative,-0.71509
+"I really need to get back on the track and get motivated again for myself and my loved ones.
+",Relationship,0.4585965495098736,positive,0.242319
+"As I more work on this, I get the feeling that this will work if I build&maintain it right.
+",Productivity,0.9516678867126074,negative,-0.469907

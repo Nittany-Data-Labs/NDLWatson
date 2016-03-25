@@ -1,0 +1,9 @@
+Sentence,Class,Confidence,Sentiment,Score
+"Well....after all that about loving bedtime, I cannot sleep.
+",Relationship,0.854707357791275,positive,0.209119
+"Romans 8:38  “For I am persuaded that neither death nor life, nor angels, nor principalities, nor height nor depth nor anything else in all creation will be able to separate us from the love of God in Christ Jesus our Lord.”  Put simply, Nothing can separate us from God’s love.
+",Religion,0.6280938229773632,positive,0.566641
+"Nothing.
+",N/A,0.8003729650544503,negative,-0.424474
+"This is Jesus’s gift to us.  
+",Reflection,0.4823667233341897,positive,0.707402

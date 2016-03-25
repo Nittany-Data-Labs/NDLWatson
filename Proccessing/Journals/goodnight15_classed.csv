@@ -1,0 +1,11 @@
+Sentence,Class,Confidence,Sentiment,Score
+"My grandson cursed at me and told me to leave him alone.
+",Relationship,0.3731883773076543,negative,-0.532692
+"Then I came home and gave my husband the cold shoulder for something he said two days ago that I thought I had forgiven.
+",Family,0.8273736447512674,negative,-0.305099
+"Notice the common denominator?
+",Reflection,0.4824398491207706,negative,-0.42104
+"Father in Heaven, help me to truly forgive, not just halfway.
+",Relationship,0.8797858871313495,positive,0.290633
+"“Create in me a clean heart, O God, and renew a right spirit within me.”  Psalm 51 I think.
+",Religion,0.4808890626736391,positive,0.750761
