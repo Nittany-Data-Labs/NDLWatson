@@ -1,0 +1,15 @@
+Sentence,Class,Confidence,Sentiment,Score
+"Thank You, God for Sundays.
+",Appreciation,0.778903181267349,positive,0.74588
+"A little bit of rest in the rush of the week.
+",Event,0.47317691916149635,negative,-0.642133
+"Church is good and we look forward to going.
+",Relationship,0.9158882154481705,positive,0.835701
+"You are so good, God.
+",Religion,0.4924330828955338,positive,0.609976
+"If I tried to list all your blessings, my computer would explode!
+",Religion,0.42553153491983947,negative,-0.398576
+"I love You, Jesus.
+",Religion,0.7212716118840488,positive,0.735575
+"Not ashamed to publish it.
+",N/A,0.8663228436915091,negative,-0.408894
