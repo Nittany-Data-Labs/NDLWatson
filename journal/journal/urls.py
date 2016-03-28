@@ -15,8 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.http import HttpResponseRedirect
 
 urlpatterns = [
     url(r'^journal_app/', include('journal_app.urls')),
     url(r'^admin/', admin.site.urls),
+
+    # redierect home page to journal_app index
+    url(r'^$', lambda r: HttpResponseRedirect('journal_app/')),
+
 ]

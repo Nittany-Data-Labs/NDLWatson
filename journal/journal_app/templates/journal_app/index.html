@@ -1,9 +1,11 @@
 {% if journal_entry_list %}
   <ul>
     {% for entry in journal_entry_list %}
-      <li><a href="/journal_app/{{ entry.id }}/">{{ entry.title }}</a></li>
+      <li><a href="{% url 'journal_app:detail' entry.id %}">{{ entry.title }}</a></li>
     {% endfor %}
   </ul>
   {% else %}
     <p>No entries available</p>
   {% endif %}
+  <a href = "{% url 'journal_app:record_entry' %}">New Entry</a>
+  <a href = "{% url 'journal_app:user_access' %}">User Access</a>
