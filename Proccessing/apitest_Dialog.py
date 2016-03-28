@@ -10,8 +10,8 @@ import pprint
 class Dialog:
 
 	def __init__(self):
-		# base url for dialogs
-		self.url_alt = "https://gateway.watsonplatform.net/dialog/api/v1/dialogs/"
+		# base url for authentication (auth)
+		self.url_alt = {'auth' : "https://gateway.watsonplatform.net/dialog/api/v1"}
 
 		self.cred = get_cred('dialog')
 		print self.cred
@@ -20,8 +20,12 @@ class Dialog:
 
 	def getAccountInfo(self):
 		url_alt = self.url_alt
+		print 'url: ', url_alt
 		cred = self.cred
-		r_a = requests.get(url_alt, auth=(cred['usr'], cred['pwd']))
+		print 'cred: ', cred
+		r_a = requests.get(url_alt['auth'], auth=(cred['usr'], cred['pwd']))
+		print r_a.text
+		print r_a
 		data_a = json.loads(r_a.text)
 		self.account = data_a['accounts'][0]['account_id']
 		print self.account
@@ -174,9 +178,11 @@ class Dialog:
 
 
 if __name__ == "__main__":
-	ci = ConceptInsights()
+	test = Dialog()
 	print 'account:'
-	ci.getAccountInfo()
+
+	test.getAccountInfo()
+'''
 	print 'graphs:'
 	ci.getAvailableGraphs()
 	print 'corpora:'
@@ -191,4 +197,4 @@ if __name__ == "__main__":
 	ci.getDocument('test1', 'doc1')
 
 	ci.getDocAnnotations('doc1')
-
+'''
