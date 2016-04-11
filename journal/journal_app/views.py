@@ -3,28 +3,39 @@ from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import loader
 from django.core.urlresolvers import reverse
 from django.utils import timezone
+from django.contrib.auth import logout, login
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from .forms import EntryForm, RegistrationForm
+
+from .forms import EntryForm, RegistrationForm, LoginForm
 from .models import JournalEntry
 
 # Create your views here.
 def index(request):
-    journal_entry_list = JournalEntry.objects.all()
-    context = {'journal_entry_list': journal_entry_list}
+    current_user = request.user
+    journal_entry_list = ''
+    if current_user.is_authenticated():
+        print 'authenticated'
+        # journal_entry_list = JournalEntry.objects.all()
+        journal_entry_list = JournalEntry.objects.filter(author=current_user)
+    context = {'journal_entry_list': journal_entry_list, 'current_user': current_user}
     return render(request, 'journal_app/index.html', context)
 
+@login_required
 def detail(request, journal_entry_id):
     entry = get_object_or_404(JournalEntry, pk=journal_entry_id)
     return render(request, 'journal_app/detail.html', {'entry': entry})
 
+@login_required
 def record_entry(request):
     template = loader.get_template('journal_app/record_entry.html')
     # Display form
     form = EntryForm()
     return render(request, 'journal_app/record_entry.html', {'form': form})
 
+@login_required
 def submit_entry(request):
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
@@ -33,8 +44,9 @@ def submit_entry(request):
         # check whether it's valid:
         if form.is_valid():
             # process the data in form.cleaned_data as required
+            current_user = request.user
             title = form.cleaned_data['title']
-            author = form.cleaned_data['author']
+            author = current_user
             body = form.cleaned_data['body']
             pub_date = timezone.now()
 
@@ -50,7 +62,7 @@ def submit_entry(request):
 
     return render(request, 'journal_app/record_entry.html', {'form': form})
 
-@login_required(login_url='failed_login')
+@login_required
 def user_access(request):
     return render(request, '/journal_app/user_access.html')
 
@@ -88,3 +100,47 @@ def submit_registration(request):
         form = RegistrationForm()
 
     return render(request, 'journal_app/view_registration.html', {'form': form})
+
+def view_login(request):
+    template = loader.get_template('journal_app/view_login.html')
+    form = LoginForm()
+    return render(request, 'journal_app/view_login.html', {'form': form})
+
+def submit_login(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = LoginForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    # Redirect to a success page.
+                    # redirect to a new URL:
+                    return HttpResponseRedirect(reverse('journal_app:index'))
+                else:
+                    # Return a 'disabled account' error message
+                    # redirect to a new URL:
+                    return HttpResponseRedirect(reverse('journal_app:index'))
+            else:
+                # Return an 'invalid login' error message.
+                # redirect to a new URL:
+                error_message = 'Login Failed'
+                context = {'form':form, 'error_message':error_message}
+                return render(request, 'journal_app/view_login.html', context)
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = RegistrationForm()
+
+    return render(request, 'journal_app/view_login.html', {'form': form})
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect(reverse('journal_app:index'))

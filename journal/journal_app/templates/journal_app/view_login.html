@@ -1,0 +1,10 @@
+<h2>Login<h2>
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+  <form action="{% url 'journal_app:submit_login'%}" method="post">
+    {% csrf_token %}
+      {{ form }}
+    <input type="submit" value="Post" />
+  </form>
+
+<a href="{% url 'journal_app:user_access' %}">user access</a><br>
+<a href="{% url 'journal_app:index' %}">Home</a>

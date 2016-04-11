@@ -1,4 +1,6 @@
-{% if journal_entry_list %}
+{% if user.is_authenticated %}
+<h4>{{ current_user.first_name }} {{ current_user.last_name }}
+  {% if journal_entry_list %}
   <ul>
     {% for entry in journal_entry_list %}
       <li><a href="{% url 'journal_app:detail' entry.id %}">{{ entry.title }}</a></li>
@@ -7,6 +9,10 @@
   {% else %}
     <p>No entries available</p>
   {% endif %}
-  <a href = "{% url 'journal_app:record_entry' %}">New Entry</a>
-  <a href = "{% url 'journal_app:user_access' %}">User Access</a>
-  <a href = "{% url 'journal_app:view_registration' %}">Sign Up</a>
+  <a href = "{% url 'journal_app:record_entry' %}">New Entry</a><br>
+  <a href = "{% url 'journal_app:user_access' %}">User Access</a><br>
+  <a href = "{% url 'journal_app:user_logout' %}">Log Out</a><br>
+{% else %}
+  <a href = "{% url 'journal_app:view_registration' %}">Sign Up</a><br>
+  <a href = "{% url 'journal_app:view_login' %}">Login</a><br>
+{% endif %}
