@@ -1,0 +1,22 @@
+{
+  "NLC": {
+  	"url": "https://gateway.watsonplatform.net/natural-language-classifier/api",
+  	"password": "YI7v88tWNyF5",
+  	"username": "52fbe801-a3a8-48c0-8983-b602d6b56b13"
+  },
+  "CI": {
+    "url": "https://gateway.watsonplatform.net/concept-insights/api",
+    "password": "b40VgVdIE3LV",
+    "username": "545987f9-22c3-4438-9613-a59400956f54"
+  },
+  "AL": {
+    "url": "https://gateway-a.watsonplatform.net/calls",
+    "apikey": "ac3d758faacbf7d148405fd8e4ee9b116c401315",
+    "note": "It may take up to 5 minutes for this key to become active"
+  },
+  "DG":{
+    "url": "https://gateway.watsonplatform.net/dialog/api",
+    "password": "P5T2zU5G9PQd",
+    "username": "9669bde5-5c74-4e7b-86f5-12cd3d3a6bf4"
+  }
+}

@@ -7,7 +7,7 @@ from django.contrib.auth import logout, login
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-
+from django.core.management import call_command
 
 from .forms import EntryForm, RegistrationForm, LoginForm
 from .models import JournalEntry
@@ -26,6 +26,11 @@ def index(request):
 @login_required
 def detail(request, journal_entry_id):
     entry = get_object_or_404(JournalEntry, pk=journal_entry_id)
+    if entry.processed == False:
+        call_command('paired')
+        entry.processed = True
+        entry.save()
+
     return render(request, 'journal_app/detail.html', {'entry': entry})
 
 @login_required
@@ -50,11 +55,10 @@ def submit_entry(request):
             body = form.cleaned_data['body']
             pub_date = timezone.now()
 
-            j = JournalEntry(title = title, author = author, body = body, pub_date = pub_date)
+            j = JournalEntry(title = title, author = author, body = body, pub_date = pub_date, processed = False)
             j.save()
             # redirect to a new URL:
-            journal_entry_list = JournalEntry.objects.all()
-            return HttpResponseRedirect(reverse('journal_app:index'))
+            return HttpResponseRedirect(reverse('journal_app:detail', args=[j.id]))
 
     # if a GET (or any other method) we'll create a blank form
     else:
@@ -64,10 +68,7 @@ def submit_entry(request):
 
 @login_required
 def user_access(request):
-    return render(request, '/journal_app/user_access.html')
-
-def failed_login(request):
-    return render(request, '/journal_app/failed_login.html')
+    return render(request, 'journal_app/user_access.html')
 
 def view_registration(request):
     template = loader.get_template('journal_app/view_registration.html')
