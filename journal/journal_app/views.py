@@ -8,9 +8,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.core.management import call_command
-
 from .forms import EntryForm, RegistrationForm, LoginForm
-from .models import JournalEntry
+from .models import JournalEntry, ProcessedEntry
 
 # Create your views here.
 def index(request):
@@ -27,11 +26,11 @@ def index(request):
 def detail(request, journal_entry_id):
     entry = get_object_or_404(JournalEntry, pk=journal_entry_id)
     if entry.processed == False:
-        call_command('paired')
+        call_command('paired', entry_id=journal_entry_id)
         entry.processed = True
         entry.save()
-
-    return render(request, 'journal_app/detail.html', {'entry': entry})
+    p = ProcessedEntry.objects.filter(entry=entry)
+    return render(request, 'journal_app/detail.html', {'entry': entry, 'processed': p})
 
 @login_required
 def record_entry(request):

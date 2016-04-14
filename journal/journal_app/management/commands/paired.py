@@ -5,8 +5,9 @@ from get_cred import get_cred
 from watson_developer_cloud import NaturalLanguageClassifierV1
 from watson_developer_cloud import AlchemyLanguageV1
 from django.core.management.base import BaseCommand, CommandError
-from journal_app.models import JournalEntry
+from journal_app.models import JournalEntry, ProcessedEntry
 from django.core.files import File
+from nltk.tokenize import sent_tokenize
 
 class Command(BaseCommand):
     cred = get_cred('NLC')
@@ -54,31 +55,62 @@ class Command(BaseCommand):
         classes = self.natural_language_classifier.classify(classifier_id, sentence)
         return [json.loads(json.dumps(classes, indent=2))['classes'][0]['class_name'], json.loads(json.dumps(classes, indent=2))['classes'][0]['confidence']]
 
-    def classifyJournal(self, filename, classifier_id):
-        journal = open(filename, 'r')
-        with open(str(filename)+'_classed.csv', 'w') as csvfile:
+    # def classifyJournal(self, filename, classifier_id):
+    #     journal = open(filename, 'r')
+    #     with open(str(filename)+'_classed.csv', 'w') as csvfile:
+    #         fieldnames = ['Sentence', 'Class', 'Confidence', 'Sentiment', 'Score']
+    #         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    #         writer.writeheader()
+    #         c = 0
+    #         classed = []
+    #         for i in journal:
+    #             c += 1
+    #             try:
+    #                 classed = self.classifySentence(str(i), classifier_id)
+    #                 output = json.dumps(self.alchemy_language.sentiment(text=i))
+    #                 writer.writerow({'Sentence': i, 'Class': classed[0], 'Confidence': classed[1], 'Sentiment': json.loads(output)['docSentiment']['type'], 'Score': json.loads(output)['docSentiment']['score']})
+    #
+    #                 print str(i) + ':', classed[0]
+    #             except:
+    #                 print 'error'
+    #     journal.close()
+
+    def classifyJournal(self, journal, classifier_id, raw_entry):
+        with open(str('test')+'_classed.csv', 'w') as csvfile:
             fieldnames = ['Sentence', 'Class', 'Confidence', 'Sentiment', 'Score']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
             writer.writeheader()
             c = 0
             classed = []
             for i in journal:
-                c += 1
+
                 try:
                     classed = self.classifySentence(str(i), classifier_id)
                     output = json.dumps(self.alchemy_language.sentiment(text=i))
                     writer.writerow({'Sentence': i, 'Class': classed[0], 'Confidence': classed[1], 'Sentiment': json.loads(output)['docSentiment']['type'], 'Score': json.loads(output)['docSentiment']['score']})
-
+                    p = ProcessedEntry(entry = raw_entry, sentence = i, category = classed[0], cat_conf = classed[1], sentiment = json.loads(output)['docSentiment']['type'], sent_score = json.loads(output)['docSentiment']['score'])
+                    p.save()
+                    c += 1
                     print str(i) + ':', classed[0]
                 except:
                     print 'error'
-        journal.close()
     # createClassifier('Journals/Sentences/test_file_5.csv')
     # checkClassifierStatus(classifier_id)
     # pprint.pprint(classifySentence('Kind of feel little uncomfortable here.', classifier_id))
+
+    def add_arguements(self, parser):
+        help = 'sends journal to Watson to be procesed'
+        parser.add_argument('entry_id', nargs='+', type=int)
+
     def handle(self, *args, **options):
-        classifier_id = self.listClassifier(0)
-        self.classifyJournal('./journal_app/static/goodnight285', classifier_id)
+
+            raw_entry = JournalEntry.objects.get(pk=options['entry_id'])
+            # try:
+            journal = sent_tokenize(raw_entry.body)
+            classifier_id = self.listClassifier(0)
+            self.classifyJournal(journal, classifier_id, raw_entry)
+            # except:
+            #     print 'handle error'
 
     # Travel
     # Addiction

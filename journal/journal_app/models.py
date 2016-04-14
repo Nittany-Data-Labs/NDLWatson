@@ -20,3 +20,13 @@ class JournalEntry(models.Model):
 
     def __str__(self):
         return self.title
+
+class ProcessedEntry(models.Model):
+    entry = models.ForeignKey(JournalEntry, on_delete=models.CASCADE)
+    sentence = models.TextField()
+    category = models.CharField(max_length=200)
+    cat_conf = models.FloatField()
+    sentiment = models.CharField(max_length=200)
+    sent_score = models.FloatField()
+    def __str__(self):
+        return self.sentence
