@@ -1,1 +1,1 @@
-web: gunicorn mylifemyplaylist.wsgi --log-file -
+gitweb: gunicorn journal.wsgi --log-file -
