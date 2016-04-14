@@ -3,7 +3,7 @@
 <h4>{{ entry.pub_date }}</h4>
 <p>{{ entry.body }}<p>
 <h5>Processed<h5>
-<p>p: {{ p }} </p>
+<p>p: {{ processed }} </p>
 <table style="width:100%">
   <tr>
     <td> Sentence </td>
@@ -12,7 +12,7 @@
     <td> Sentiment </td>
     <td> Sentiment Score </td>
   </tr>
-  {% for i in p %}
+  {% for i in processed %}
   <tr>
     <td> {{i.sentence}} </td>
     <td> {{i.category}} </td>
