@@ -1,3 +1,4 @@
+python==2.7.10
 Django==1.9.4
 heroku==0.1.4
 nltk==3.2.1
