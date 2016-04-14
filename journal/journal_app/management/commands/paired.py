@@ -7,7 +7,10 @@ from watson_developer_cloud import AlchemyLanguageV1
 from django.core.management.base import BaseCommand, CommandError
 from journal_app.models import JournalEntry, ProcessedEntry
 from django.core.files import File
+import nltk
 from nltk.tokenize import sent_tokenize
+
+nltk.data.path.append('./journal_app/management/commands/nltk_data/')
 
 class Command(BaseCommand):
     cred = get_cred('NLC')
