@@ -1,0 +1,6 @@
+Sentence,Class,Confidence,Sentiment,Score
+The word comes from a tiny flower which looks like  a miniature pansy; nowadays it is called viola.,N/A,0.42936519885843916,positive,0.325112
+But I love the old-fashioned name because it signifies so much.,Food,0.5578795562405552,positive,0.738844
+"I talk in the book about how we all need hearts-ease, rest for our souls, and peace.",Socialize,0.28844486343497616,positive,0.652553
+And how we can learn to find it.,Relationship,0.39022387101466527,positive,0.295207
+"Meanwhile, I wish you all hearts-ease, from my heart.",Religion,0.851826059386888,negative,-0.258295
