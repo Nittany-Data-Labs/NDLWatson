@@ -58,26 +58,6 @@ class Command(BaseCommand):
         classes = self.natural_language_classifier.classify(classifier_id, sentence)
         return [json.loads(json.dumps(classes, indent=2))['classes'][0]['class_name'], json.loads(json.dumps(classes, indent=2))['classes'][0]['confidence']]
 
-    # def classifyJournal(self, filename, classifier_id):
-    #     journal = open(filename, 'r')
-    #     with open(str(filename)+'_classed.csv', 'w') as csvfile:
-    #         fieldnames = ['Sentence', 'Class', 'Confidence', 'Sentiment', 'Score']
-    #         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    #         writer.writeheader()
-    #         c = 0
-    #         classed = []
-    #         for i in journal:
-    #             c += 1
-    #             try:
-    #                 classed = self.classifySentence(str(i), classifier_id)
-    #                 output = json.dumps(self.alchemy_language.sentiment(text=i))
-    #                 writer.writerow({'Sentence': i, 'Class': classed[0], 'Confidence': classed[1], 'Sentiment': json.loads(output)['docSentiment']['type'], 'Score': json.loads(output)['docSentiment']['score']})
-    #
-    #                 print str(i) + ':', classed[0]
-    #             except:
-    #                 print 'error'
-    #     journal.close()
-
     def classifyJournal(self, journal, classifier_id, raw_entry):
         with open(str('test')+'_classed.csv', 'w') as csvfile:
             fieldnames = ['Sentence', 'Class', 'Confidence', 'Sentiment', 'Score']
@@ -91,7 +71,7 @@ class Command(BaseCommand):
                     classed = self.classifySentence(str(i), classifier_id)
                     output = json.dumps(self.alchemy_language.sentiment(text=i))
                     writer.writerow({'Sentence': i, 'Class': classed[0], 'Confidence': classed[1], 'Sentiment': json.loads(output)['docSentiment']['type'], 'Score': json.loads(output)['docSentiment']['score']})
-                    p = ProcessedEntry(entry = raw_entry, sentence = i, category = classed[0], cat_conf = classed[1], sentiment = json.loads(output)['docSentiment']['type'], sent_score = json.loads(output)['docSentiment']['score'])
+                    p = ProcessedEntry(entry = raw_entry, sent_id = c, sentence = i, category = classed[0], cat_conf = classed[1], sentiment = json.loads(output)['docSentiment']['type'], sent_score = json.loads(output)['docSentiment']['score'])
                     p.save()
                     c += 1
                     print str(i) + ':', classed[0]

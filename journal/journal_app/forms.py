@@ -6,11 +6,11 @@ class EntryForm(forms.Form):
     body = forms.CharField(widget=forms.Textarea)
 
 class RegistrationForm(forms.Form):
-    first_name = forms.CharField(label='first_name', max_length=200)
-    last_name = forms.CharField(label='last_name', max_length=200)
-    email = forms.EmailField(label='email')
-    password = forms.CharField(widget=forms.PasswordInput())
+    first_name = forms.CharField(label='First Name:', max_length=200)
+    last_name = forms.CharField(label='Last Name:', max_length=200)
+    email = forms.EmailField(label='Email:')
+    password = forms.CharField(label='Password:', widget=forms.PasswordInput())
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='username', max_length=200)
-    password = forms.CharField(widget=forms.PasswordInput())
+    username = forms.CharField(label='Username:', max_length=200)
+    password = forms.CharField(label='Password:', widget=forms.PasswordInput())

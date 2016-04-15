@@ -23,6 +23,7 @@ class JournalEntry(models.Model):
 
 class ProcessedEntry(models.Model):
     entry = models.ForeignKey(JournalEntry, on_delete=models.CASCADE)
+    sent_id = models.IntegerField()
     sentence = models.TextField()
     category = models.CharField(max_length=200)
     cat_conf = models.FloatField()

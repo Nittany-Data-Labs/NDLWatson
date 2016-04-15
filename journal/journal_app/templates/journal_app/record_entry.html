@@ -1,9 +1,22 @@
-<h2>Record New Journal Entry<h2>
-  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-  <form action="{% url 'journal_app:submit_entry'%}" method="post">
-    {% csrf_token %}
-      {{ form }}
-    <input type="submit" value="Post" />
-  </form>
-  
-<a href="{% url 'journal_app:index' %}">Home</a>
+{% extends 'journal_app/base.html' %}
+
+{% block content %}
+  <h2>Record New Journal Entry<h2>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <form class="ui form" action="{% url 'journal_app:submit_entry'%}" method="post">
+      {% csrf_token %}
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <label for='{{ form.title }}'> Entry Title: </label>
+            {{ form.title }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <label for='{{ form.body }}'> Entry Body: </label>
+            {{ form.body }}
+        </div>
+      <input type="submit" value="Post" />
+    </form>
+
+  <a href="{% url 'journal_app:index' %}">Home</a>
+{% endblock %}

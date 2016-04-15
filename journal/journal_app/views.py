@@ -65,10 +65,6 @@ def submit_entry(request):
 
     return render(request, 'journal_app/record_entry.html', {'form': form})
 
-@login_required
-def user_access(request):
-    return render(request, 'journal_app/user_access.html')
-
 def view_registration(request):
     template = loader.get_template('journal_app/view_registration.html')
     # Display formform = LoginForm()

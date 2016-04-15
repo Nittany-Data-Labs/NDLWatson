@@ -1,9 +1,35 @@
-<h2>Sign Up<h2>
-  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-  <form action="{% url 'journal_app:submit_registration'%}" method="post">
-    {% csrf_token %}
-      {{ form }}
-    <input type="submit" value="Post" />
-  </form>
+{% extends 'journal_app/base.html' %}
 
-<a href="{% url 'journal_app:index' %}">Home</a>
+{% block content %}
+
+  <h2>Sign Up<h2>
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <form class="ui form" action="{% url 'journal_app:submit_registration'%}" method="post">
+      {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <label for='{{ form.first_name }}'> First Name: </label>
+            {{ form.first_name }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <label for='{{ form.last_name }}'> Last Name: </label>
+            {{ form.last_name }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <label for='{{ form.email }}'> Email: </label>
+            {{ form.email }}
+        </div>
+        <div class="fieldWrapper">
+            {{ form.subject.errors }}
+            <label for='{{ form.password }}'> Password </label>
+            {{ form.password }}
+        </div>
+      <input type="submit" value="Register" />
+    </form>
+
+  <a href="{% url 'journal_app:index' %}">Home</a>
+
+{% endblock %}
