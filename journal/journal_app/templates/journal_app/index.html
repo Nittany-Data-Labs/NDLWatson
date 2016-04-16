@@ -1,49 +1,43 @@
 {% extends 'journal_app/base.html' %}
 
-{% block cover %}
-<div class="splash">
-  <img class="ui image" src='https://source.unsplash.com/category/buildings/1600x900' style="width:100%">
-</div>
-{% endblock %}
 
 {% block content %}
   {% if user.is_authenticated %}
     {% if journal_entry_list %}
-    <ul>
-      <div class="ui cards">
-        {% for entry in journal_entry_list %}
-          <div class="card">
-            <a class='image' href="{% url 'journal_app:detail' entry.id %}">
-              <img src='https://source.unsplash.com/category/nature/1600x900'>
-            </a>
-            <div class="content">
-              <div class="header">
-                <a href="{% url 'journal_app:detail' entry.id %}">{{ entry.title }}</a>
-              </div>
-              <div class="description">
-                {{ entry.processedentry_set.all.0 }}..
-              </div>
+
+    <div class="ui cards" style="padding: 0px;">
+      {% for entry in journal_entry_list %}
+        <div class="card">
+          <a class='image' href="{% url 'journal_app:detail' entry.id %}">
+            <img src='https://source.unsplash.com/category/nature/1600x900'>
+          </a>
+          <div class="content">
+            <div class="header">
+              <a href="{% url 'journal_app:detail' entry.id %}">{{ entry.title }}</a>
             </div>
-            <div class="extra content">
-              {{entry.pub_date}}
+            <div class="description">
+              {{ entry.processedentry_set.all.0 }}..
             </div>
           </div>
-        {% endfor %}
-      </div>
-    </ul>
+          <div class="extra content">
+            {{entry.pub_date}}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
     {% else %}
       <p>No entries available</p>
     {% endif %}
     <a href = "{% url 'journal_app:record_entry' %}">New Entry</a><br>
+    <a href = "{% url 'journal_app:link_spotify' %}">Link Spotify</a><br>
     <a href = "{% url 'journal_app:user_logout' %}">Log Out</a><br>
-
   {% else %}
     <div class="ui buttons">
       <a class="ui blue button" href = "{% url 'journal_app:view_registration' %}" style='width:100px'>Register</a>
       <div class="or"></div>
       <a class="ui green button" href = "{% url 'journal_app:view_login' %}" style='width:100px'>Login</a>
     </div>
-    <!-- <a href = "{% url 'journal_app:view_registration' %}">Sign Up</a><br>
-    <a href = "{% url 'journal_app:view_login' %}">Login</a><br> -->
+
   {% endif %}
 {% endblock %}

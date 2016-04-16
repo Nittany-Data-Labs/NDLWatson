@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import JournalEntry, ProcessedEntry
+from .models import JournalEntry, ProcessedEntry, UserProfile
 
 
 
@@ -20,3 +20,4 @@ class JournalEntryAdmin(admin.ModelAdmin):
     inlines = [ProcessedEntryInline]
 
 admin.site.register(JournalEntry, JournalEntryAdmin)
+admin.site.register(UserProfile)

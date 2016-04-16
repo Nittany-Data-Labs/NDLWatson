@@ -13,5 +13,7 @@ urlpatterns = [
     url(r'^submit_registration$', views.submit_registration, name='submit_registration'),
     url(r'^view_login/$', views.view_login, name='view_login'),
     url(r'^submit_login/$', views.submit_login, name = 'submit_login'),
-    url(r'^user_logout/$', views.user_logout, name = 'user_logout')
+    url(r'^user_logout/$', views.user_logout, name = 'user_logout'),
+    url(r'^callback/$', views.callback, name = 'callback'),
+    url(r'^link_spotify/$', views.link_spotify, name = 'link_spotify'),
 ]

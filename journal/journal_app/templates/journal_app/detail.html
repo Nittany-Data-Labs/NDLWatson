@@ -1,12 +1,13 @@
 {% extends 'journal_app/base.html' %}
-
+{% block cover %}
+<div class="splash"></div>
+{% endblock %}
 {% block content %}
   <h2>{{ entry.title }}</h3>
   <h4>{{ entry.author.first_name }} {{ entry.author.last_name }}</h4>
   <h4>{{ entry.pub_date }}</h4>
   <p>{{ entry.body }}<p>
-  <h5>Processed<h5>
-  <p>p: {{ processed }} </p>
+  <a href=playlist_link>Spotify Playlist</a>
   <table class="ui very basic collapsing celled table" style="width:100%">
     <thead><tr>
       <th> Sentence </td>

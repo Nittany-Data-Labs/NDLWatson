@@ -2,20 +2,22 @@
 <html>
 
   <head>
-    <title>Page Title</title>
+    <title>My Life My Playlist</title>
     {% load staticfiles %}
     <link rel="stylesheet" type="text/css" href="{% static 'journal_app/mlmp.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'journal_app/semantic.css' %}" />
   </head>
 
   <body>
+    <div class="splash">
+      <div class="cover-6">
+
+      </div>
+    </div>
     <div class="ui container">
       <h1><a href="{% url 'journal_app:index' %}">My Life My Playlist</a></h1>
       <h4>{{ current_user.first_name }} {{ current_user.last_name }}</h4>
-    </div>
-      {% block cover %}
-      {% endblock %}
-    <div class="ui container">
+
       {% block content %}
       {% endblock %}
     </div>
